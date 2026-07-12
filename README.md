@@ -1,48 +1,52 @@
 # 🚀 RAGAssistant
 
-A simple Retrieval-Augmented Generation (RAG) application built using **Python**, **LangChain**, **Ollama**, and **FAISS**. It reads a local text file, creates embeddings, stores them in a vector database, and retrieves relevant information to answer user questions.
+A **Retrieval-Augmented Generation (RAG)** application built using **Python, LangChain, Ollama, and FAISS**. This project reads a local text document, generates embeddings, stores them in a vector database, and answers user queries using semantic search and a local Large Language Model (LLM).
 
-## Features
+## ✨ Features
 
-- Read text documents (`speech.txt`)
-- Split documents into chunks
-- Generate embeddings using Ollama
-- Store embeddings in FAISS
-- Perform semantic similarity search
-- Generate context-aware responses using a local LLM
-- Fully offline (no OpenAI API required)
-
----
-
-## Tech Stack
-
-- Python
-- LangChain
-- Ollama
-- FAISS
-- mxbai-embed-large (Embedding Model)
-- Gemma4 / Llama2 (LLM)
+- 📄 Read and process text documents (`speech.txt`)
+- ✂️ Intelligent document chunking using LangChain
+- 🧠 Generate embeddings with Ollama (`mxbai-embed-large`)
+- 🔍 Semantic search using FAISS Vector Store
+- 🤖 AI-powered responses using Ollama (`gemma4`)
+- 🔗 LangChain Retrieval Chain for context-aware question answering
+- 💾 Local vector database
+- 🔒 Fully offline (No OpenAI API required)
 
 ---
 
-## Project Structure
+# 🛠 Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| Python 3.11+ | Programming Language |
+| LangChain | RAG Framework |
+| Ollama | Local LLM & Embedding Models |
+| FAISS | Vector Database |
+| LangChain Retrieval Chain | Context Retrieval |
+| RecursiveCharacterTextSplitter | Document Chunking |
+
+---
+
+# 📂 Project Structure
 
 ```
 RAGAssistant/
 │
 ├── speech.txt
-├── main.py
 ├── vector_db/
-├── requirements.txt
+├── .env.example
 ├── .gitignore
+├── main.py
+├── requirements.txt
 └── README.md
 ```
 
 ---
 
-## Installation
+# ⚙️ Installation
 
-### 1. Clone the repository
+## Clone Repository
 
 ```bash
 git clone https://github.com/<your-github-username>/RAGAssistant.git
@@ -50,21 +54,25 @@ git clone https://github.com/<your-github-username>/RAGAssistant.git
 cd RAGAssistant
 ```
 
-### 2. Create a virtual environment
+## Create Virtual Environment
+
+### Windows
 
 ```bash
 python -m venv .venv
-```
 
-Activate it:
-
-**Windows**
-
-```bash
 .venv\Scripts\activate
 ```
 
-### 3. Install dependencies
+### Linux / macOS
+
+```bash
+python3 -m venv .venv
+
+source .venv/bin/activate
+```
+
+## Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -72,9 +80,29 @@ pip install -r requirements.txt
 
 ---
 
-## Install Ollama
+# Configure Environment
 
-Download and install Ollama from:
+Copy the example environment file.
+
+### Windows
+
+```bash
+copy .env.example .env
+```
+
+### Linux / macOS
+
+```bash
+cp .env.example .env
+```
+
+Update the values in `.env` if required.
+
+---
+
+# Install Ollama
+
+Download and install Ollama:
 
 https://ollama.com/download
 
@@ -85,91 +113,117 @@ ollama pull mxbai-embed-large
 ollama pull gemma4
 ```
 
+Verify:
+
+```bash
+ollama list
+```
+
 ---
 
-## Usage
+# ▶️ Run Application
 
-Place your document in the project folder as:
+Place your document as:
 
 ```
 speech.txt
 ```
 
-Run the application:
+Execute:
 
 ```bash
 python main.py
 ```
 
-The application will:
-
-1. Read `speech.txt`
-2. Split the text into chunks
-3. Generate embeddings
-4. Store vectors in FAISS
-5. Retrieve relevant context
-6. Generate answers using Ollama
-
----
-
-## RAG Workflow
+Example:
 
 ```
-speech.txt
-      │
-      ▼
-TextLoader
-      │
-      ▼
-Text Splitter
-      │
-      ▼
-Ollama Embeddings
-      │
-      ▼
-FAISS Vector Store
-      │
-      ▼
-Similarity Search
-      │
-      ▼
-Ollama LLM
-      │
-      ▼
-Answer
+You:
+What is democracy?
+
+Assistant:
+The world must be made safe for democracy...
 ```
 
 ---
 
-## Example
-
-**Question**
+# 🔄 LangChain RAG Workflow
 
 ```
-What does the speaker promise regarding the German people?
-```
-
-**Answer**
-
-```
-The speaker states, "We are... the sincere friends of the German people" and promises that they shall have an opportunityto prove this friendship in their daily attitude and actions toward the millions of men and women of German birth and native sympathy who live among them.
+                speech.txt
+                     │
+                     ▼
+               TextLoader
+                     │
+                     ▼
+      RecursiveCharacterTextSplitter
+                     │
+                     ▼
+        Ollama Embedding Model
+        (mxbai-embed-large)
+                     │
+                     ▼
+             FAISS Vector Store
+                     │
+                     ▼
+            LangChain Retriever
+                     │
+                     ▼
+       LangChain Retrieval Chain
+                     │
+                     ▼
+          Ollama LLM (gemma4)
+                     │
+                     ▼
+               Final Response
 ```
 
 ---
 
-## Future Improvements
+# 📌 Example Questions
 
-- Support PDF documents
-- Support DOCX files
-- Streamlit Web UI
+- What is democracy?
+- Why does the speaker oppose conquest?
+- What sacrifices does the speaker mention?
+- What does the speaker say about peace?
+- Who are considered the champions of mankind?
+- Why did America enter the war?
+
+---
+
+# 📦 Dependencies
+
+- langchain
+- langchain-core
+- langchain-community
+- langchain-text-splitters
+- langchain-ollama
+- faiss-cpu
+- python-dotenv
+
+Install all dependencies using:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# Future Improvements
+
+- PDF Support
+- DOCX Support
+- Streamlit UI
 - FastAPI REST API
-- Multi-document support
-- Chat history
-- ChromaDB integration
+- Multi-document Retrieval
+- Conversation Memory
+- ChromaDB Integration
+- Source Citations
+- Hybrid Search (BM25 + Vector Search)
 
 ---
 
-## Skills Demonstrated
+# Skills Demonstrated
 
 - Python
 - LangChain
@@ -178,12 +232,14 @@ The speaker states, "We are... the sincere friends of the German people" and pro
 - FAISS
 - Embeddings
 - Semantic Search
+- Vector Databases
 - Prompt Engineering
-- Large Language Models (LLMs)
+- Local LLM Deployment
+- Generative AI
 
 ---
 
-## Author
+# 👨‍💻 Author
 
 **Dheerendra Kumar Chaurasiya**
 
@@ -191,6 +247,6 @@ GitHub: https://github.com/dkchaurasiya
 
 ---
 
-## License
+# 📄 License
 
-MIT License
+This project is licensed under the MIT License.
