@@ -5,6 +5,14 @@ from langchain_ollama import OllamaEmbeddings
 from langchain_community.vectorstores import FAISS
 
 from langchain_ollama import ChatOllama
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+## Langsmith Tracking
+os.environ["LANGCHAIN_API_KEY"]=os.getenv("LANGCHAIN_API_KEY")
+os.environ["LANGCHAIN_TRACING_V2"]="true"
+os.environ["LANGCHAIN_PROJECT"]=os.getenv("LANGCHAIN_PROJECT")
 
 # Load Text File
 loader = TextLoader("speech.txt", encoding="utf-8")
