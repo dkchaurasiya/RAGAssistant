@@ -146,13 +146,13 @@ Answer
 **Question**
 
 ```
-Who is the chairman of the drafting committee?
+What does the speaker promise regarding the German people?
 ```
 
 **Answer**
 
 ```
-Dr. B.R. Ambedkar was the chairman of the drafting committee.
+The speaker states, "We are... the sincere friends of the German people" and promises that they shall have an opportunityto prove this friendship in their daily attitude and actions toward the millions of men and women of German birth and native sympathy who live among them.
 ```
 
 ---
